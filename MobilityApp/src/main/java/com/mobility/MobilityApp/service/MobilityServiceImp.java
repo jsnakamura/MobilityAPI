@@ -1,4 +1,4 @@
-package com.mobility.service;
+package com.mobility.MobilityApp.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,11 +9,11 @@ import org.apache.lucene.util.SloppyMath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mobility.entity.Bus;
-import com.mobility.entity.Itinerary;
-import com.mobility.entity.Location;
-import com.mobility.repository.BusRepository;
-import com.mobility.repository.ItineraryRepository;
+import com.mobility.MobilityApp.entity.Bus;
+import com.mobility.MobilityApp.entity.Itinerary;
+import com.mobility.MobilityApp.entity.Location;
+import com.mobility.MobilityApp.repository.BusRepository;
+import com.mobility.MobilityApp.repository.ItineraryRepository;
 
 @Service
 public class MobilityServiceImp implements MobilityService {
@@ -36,8 +36,8 @@ public class MobilityServiceImp implements MobilityService {
 	public Bus upsertBus(Bus bus) {
 
 		return busRepository.findById(bus.getId()).map(streamBus -> {
-			streamBus.setCode(bus.getCode());
-			streamBus.setName(bus.getName());
+			streamBus.setCodigo(bus.getCodigo());
+			streamBus.setNome(bus.getNome());
 			return busRepository.save(streamBus);
 		}).orElseGet(() -> {
 			bus.setId(busRepository.findAll().size() + 1);
@@ -71,7 +71,7 @@ public class MobilityServiceImp implements MobilityService {
 	@Override
 	public Itinerary upsertItinerary(Itinerary itinerary) {
 
-		return itineraryRepository.findById(itinerary.getId()).map(streamIti -> {
+		return itineraryRepository.findById(itinerary.getIdlinha()).map(streamIti -> {
 			;
 			streamIti.setCodigo(itinerary.getCodigo());
 			streamIti.setLocations(itinerary.getLocations());
@@ -100,7 +100,7 @@ public class MobilityServiceImp implements MobilityService {
 	}
 
 	@Override
-	public List<Bus> filterBusesByRadius(double lat, double lon, double radius) {
+	public List<Bus> filterBusesByRadius(double lat, double lng, double radius) {
 
 		List<Bus> listBus = busRepository.findAll();
 
@@ -116,10 +116,10 @@ public class MobilityServiceImp implements MobilityService {
 
 			itiLocations.stream().forEach(location -> {
 
-				double distance = SloppyMath.haversinMeters(lat, lon, location.getLat(), location.getLng());
+				double distance = SloppyMath.haversinMeters(lat, lng, location.getLat(), location.getLng()) / 1000;
 
 				if (distance <= radius)
-					codeList.add(itinerary.getId());
+					codeList.add(itinerary.getIdlinha());
 			});
 		});
 

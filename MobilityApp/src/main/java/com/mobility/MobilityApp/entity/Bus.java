@@ -1,4 +1,4 @@
-package com.mobility.entity;
+package com.mobility.MobilityApp.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,22 +10,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="buses")
+@Table(name = "buses")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Bus {
 
 	@Id
-	@Column(name="id")
-	int id;
-	@Column(name="code")
-	String code;
-	@Column(name="name")
-	String name;
-	
-	public Bus(String code, String name) {
-		this.code = code;
-		this.name = name;
+	@Column(name = "id")
+	private int id;
+	@Column(name = "codigo")
+	private String codigo;
+	@Column(name = "nome")
+	private String nome;
+
+	public Bus(String codigo, String nome) {
+		this.codigo = codigo;
+		this.nome = nome;
 	}
 }

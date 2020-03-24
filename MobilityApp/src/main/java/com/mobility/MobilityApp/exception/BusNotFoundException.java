@@ -1,4 +1,4 @@
-package com.mobility.exception;
+package com.mobility.MobilityApp.exception;
 
 public class BusNotFoundException extends RuntimeException {
 
