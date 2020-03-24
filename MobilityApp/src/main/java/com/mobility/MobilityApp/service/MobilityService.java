@@ -1,9 +1,9 @@
-package com.mobility.service;
+package com.mobility.MobilityApp.service;
 
 import java.util.List;
 
-import com.mobility.entity.Bus;
-import com.mobility.entity.Itinerary;
+import com.mobility.MobilityApp.entity.Bus;
+import com.mobility.MobilityApp.entity.Itinerary;
 
 public interface MobilityService {
 
@@ -23,5 +23,5 @@ public interface MobilityService {
 
 	public void deleteItineraryById(int id);
 	
-	public List<Bus> filterBusesByRadius(double lat, double lon, double radius);
+	public List<Bus> filterBusesByRadius(double lat, double lng, double radius);
 }

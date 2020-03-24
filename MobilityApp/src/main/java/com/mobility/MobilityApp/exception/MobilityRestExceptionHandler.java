@@ -1,4 +1,4 @@
-package com.mobility.exception;
+package com.mobility.MobilityApp.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

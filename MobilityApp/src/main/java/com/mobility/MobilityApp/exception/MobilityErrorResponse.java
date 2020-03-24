@@ -1,4 +1,4 @@
-package com.mobility.exception;
+package com.mobility.MobilityApp.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
